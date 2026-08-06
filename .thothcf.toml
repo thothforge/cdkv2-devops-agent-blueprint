@@ -1,9 +1,3 @@
-[project_properties]
-project_name = "devops-agent-blueprint"
-deployment_region = "us-east-1"
-owner = "platform-team"
-environment = "dev"
-
 [thothcf]
 project_id = "devops-agent-blueprint"
 project_type = "cdkv2-typescript"
@@ -36,3 +30,18 @@ description = "Team or role owner"
 template_value = "dev"
 condition = "(dev|qa|stg|prd)"
 description = "Target environment"
+
+[template_input_parameters.dev_account_id]
+template_value = "111111111111"
+condition = "^\\d{12}$"
+description = "AWS Account ID for dev environment"
+
+[template_input_parameters.qa_account_id]
+template_value = "222222222222"
+condition = "^\\d{12}$"
+description = "AWS Account ID for QA environment"
+
+[template_input_parameters.prd_account_id]
+template_value = "333333333333"
+condition = "^\\d{12}$"
+description = "AWS Account ID for production environment"

@@ -1,31 +1,31 @@
-project_name: "devops-agent-blueprint"
+project_name: "#{project_name}#"
 
 environments:
   dev:
-    account: "111111111111"
-    region: "us-east-1"
+    account: "#{dev_account_id}#"
+    region: "#{deployment_region}#"
   qa:
-    account: "222222222222"
-    region: "us-east-1"
+    account: "#{qa_account_id}#"
+    region: "#{deployment_region}#"
   prd:
-    account: "333333333333"
-    region: "us-east-1"
+    account: "#{prd_account_id}#"
+    region: "#{deployment_region}#"
 
 tags:
-  Project: "devops-agent-blueprint"
+  Project: "#{project_name}#"
   ManagedBy: "CDK"
-  Owner: "platform-team"
+  Owner: "#{owner}#"
 
 # AWS DevOps Agent configuration
 devops_agent:
-  space_name: "devops-agent-blueprint"
+  space_name: "#{project_name}#"
   space_description: "DevOps Agent Space for production operations and release management"
   # AWS accounts the agent can investigate (multi-account)
   monitored_accounts:
-    - account_id: "111111111111"
-      role_arn: "arn:aws:iam::111111111111:role/DevOpsAgentAccessRole"
+    - account_id: "#{dev_account_id}#"
+      role_arn: "arn:aws:iam::#{dev_account_id}#:role/DevOpsAgentAccessRole"
       regions:
-        - "us-east-1"
+        - "#{deployment_region}#"
   # MCP server integrations (non-OAuth)
   # mcp_servers:
   #   - service_type: "mcpserver"
