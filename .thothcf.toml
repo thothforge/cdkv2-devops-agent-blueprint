@@ -1,0 +1,38 @@
+[project_properties]
+project_name = "devops-agent-scaffold"
+deployment_region = "us-east-1"
+owner = "platform-team"
+environment = "dev"
+
+[thothcf]
+project_id = "devops-agent-scaffold"
+project_type = "cdkv2-typescript"
+space = "bco"
+
+[origin_metadata]
+template_url = "https://github.com/thothforge/cdkv2_typescript_scaffold.git"
+template_type = "cdkv2-typescript"
+commit_hash = "797a3499af7ea76844d5aac3d17b6f58d464ae07"
+commit_date = "2026-07-27T23:52:01-05:00"
+source = "github_default_template"
+cloned_at = "2026-08-05T16:37:28.673567"
+
+[template_input_parameters.project_name]
+template_value = "MyProject"
+condition = "^[a-zA-Z0-9\\-]+$"
+description = "Project Name"
+
+[template_input_parameters.deployment_region]
+template_value = "us-east-1"
+condition = "^[a-z]{2}-[a-z]{4,10}-\\d$"
+description = "AWS Region"
+
+[template_input_parameters.owner]
+template_value = "platform-team"
+condition = "^[a-zA-Z0-9\\-]+$"
+description = "Team or role owner"
+
+[template_input_parameters.environment]
+template_value = "dev"
+condition = "(dev|qa|stg|prd)"
+description = "Target environment"

@@ -1,0 +1,30 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: devops-agent-scaffold
+    project_properties:
+      deployment_region: us-east-1
+      environment: dev
+      owner: platform-team
+      project_name: devops-agent-scaffold
+  description: IaC project for devops-agent-scaffold
+  name: devops-agent-scaffold
+  space: bco
+  tags:
+  - devops
+  - devsecops
+  - iac
+  - terraform
+  - terragrunt
+  - module
+  - aws
+  - cloud
+  - automation
+  - template
+spec:
+  lifecycle: production
+  owner: IaCPlatform
+  system: IaCPlatform
+  type: template

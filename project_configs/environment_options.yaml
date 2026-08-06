@@ -1,0 +1,53 @@
+project_name: "devops-agent-scaffold"
+
+environments:
+  dev:
+    account: "111111111111"
+    region: "us-east-1"
+  qa:
+    account: "222222222222"
+    region: "us-east-1"
+  prd:
+    account: "333333333333"
+    region: "us-east-1"
+
+tags:
+  Project: "devops-agent-scaffold"
+  ManagedBy: "CDK"
+  Owner: "platform-team"
+
+# AWS DevOps Agent configuration
+devops_agent:
+  space_name: "devops-agent-scaffold"
+  space_description: "DevOps Agent Space for production operations and release management"
+  # AWS accounts the agent can investigate (multi-account)
+  monitored_accounts:
+    - account_id: "111111111111"
+      role_arn: "arn:aws:iam::111111111111:role/DevOpsAgentAccessRole"
+      regions:
+        - "us-east-1"
+  # MCP server integrations (non-OAuth)
+  # mcp_servers:
+  #   - service_type: "mcpserver"
+  #     name: "custom-runbooks-mcp"
+  #     target_url: "https://mcp.internal.example.com"
+  #     private_connection_name: "internal-mcp"
+  #   - service_type: "mcpserversplunk"
+  #     name: "splunk-integration"
+  #     target_url: "https://splunk.internal.example.com:8089"
+  #   - service_type: "mcpservergrafana"
+  #     name: "grafana-integration"
+  #     target_url: "https://grafana.internal.example.com"
+  # Private connection (uncomment to enable VPC connectivity for MCP servers)
+  # private_connection:
+  #   name: "internalmcp"
+  #   host_address: "10.0.1.50"
+  #   vpc_id: "vpc-0123456789abcdef0"
+  #   subnet_ids:
+  #     - "subnet-0123456789abcdef0"
+  #     - "subnet-0123456789abcdef1"
+  #   security_group_ids:
+  #     - "sg-0123456789abcdef0"
+  # Identity Center (uncomment to use IdC instead of IAM for operator web app)
+  # use_identity_center: true
+  # identity_center_instance_arn: "arn:aws:sso:::instance/ssoins-1234567890abcdef"
