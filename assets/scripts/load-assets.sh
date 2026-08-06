@@ -100,6 +100,10 @@ if [[ -f "$ASSETS_DIR/instructions/AGENTS-chat.md" ]]; then
   upload_instructions "$ASSETS_DIR/instructions/AGENTS-chat.md" "CHAT"
 fi
 
+if [[ -f "$ASSETS_DIR/instructions/AGENTS-evaluation.md" ]]; then
+  upload_instructions "$ASSETS_DIR/instructions/AGENTS-evaluation.md" "PREVENTION"
+fi
+
 echo ""
 
 # --------------------------------------------------------------------------
