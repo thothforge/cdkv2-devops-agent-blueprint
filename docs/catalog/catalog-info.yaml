@@ -1,30 +1,92 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: cdkv2-devops-agent-blueprint
+  title: AWS DevOps Agent CDK Blueprint
+  description: |
+    Enterprise CDKv2 TypeScript blueprint for deploying AWS DevOps Agent infrastructure
+    across multi-product, multi-account AWS Landing Zones. Includes Agent Spaces, IAM roles,
+    account associations, MCP server integrations, private connections, Skills, and
+    versioned Agent Instructions.
+  links:
+    - url: https://github.com/thothforge/cdkv2-devops-agent-blueprint
+      title: Source Code
+      icon: github
+    - url: https://github.com/thothforge/aws-devops-agent-enteprise-guide
+      title: Enterprise Guide
+      icon: docs
   annotations:
-    backstage.io/techdocs-ref: dir:.
-    github.com/project-slug: devops-agent-blueprint
-    project_properties:
-      deployment_region: us-east-1
-      environment: dev
-      owner: platform-team
-      project_name: devops-agent-blueprint
-  description: IaC project for devops-agent-blueprint
-  name: devops-agent-blueprint
-  space: bco
+    backstage.io/techdocs-ref: dir:docs/catalog
+    github.com/project-slug: thothforge/cdkv2-devops-agent-blueprint
   tags:
-  - devops
-  - devsecops
-  - iac
-  - terraform
-  - terragrunt
-  - module
-  - aws
-  - cloud
-  - automation
-  - template
+    - cdkv2
+    - aws-devops-agent
+    - typescript
+    - infrastructure-as-code
+    - agent-space
+    - mcp
+    - sre
+    - incident-response
+    - thothforge
 spec:
-  lifecycle: production
-  owner: IaCPlatform
-  system: IaCPlatform
   type: template
+  lifecycle: production
+  owner: DevSecOps
+  system: IaCPlatform
+  providesApis: []
+  dependsOn:
+    - component:default/cdkv2-sso-delegated-management
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: devops-agent-skills
+  title: DevOps Agent Skills Catalog
+  description: |
+    Version-controlled Skills (SKILL.md format) for AWS DevOps Agent including
+    ECS deployment investigation, pipeline failure triage, daily health report,
+    and maintenance window filtering.
+  links:
+    - url: https://github.com/thothforge/cdkv2-devops-agent-blueprint/tree/main/skills
+      title: Skills Directory
+      icon: github
+  tags:
+    - devops-agent
+    - skills
+    - incident-investigation
+    - sre
+spec:
+  type: knowledge-asset
+  lifecycle: production
+  owner: SRE
+  system: DevSecOps
+  dependsOn:
+    - component:default/cdkv2-devops-agent-blueprint
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: devops-agent-instructions
+  title: DevOps Agent Instructions (AGENTS.md)
+  description: |
+    Versioned Agent Instructions for AWS DevOps Agent managed agents:
+    Global, Incident Triage, Incident RCA, Chat, and Evaluation.
+    Loaded via load-assets.sh or Console upload.
+  links:
+    - url: https://github.com/thothforge/cdkv2-devops-agent-blueprint/tree/main/assets/instructions
+      title: Instructions Directory
+      icon: github
+  tags:
+    - devops-agent
+    - agent-instructions
+    - prompt-engineering
+    - versioned
+spec:
+  type: knowledge-asset
+  lifecycle: production
+  owner: SRE
+  system: DevSecOps
+  dependsOn:
+    - component:default/cdkv2-devops-agent-blueprint
