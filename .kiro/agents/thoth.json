@@ -68,7 +68,7 @@
     "file://package.json",
     "file://project_configs/environment_options.yaml",
     "file://project_configs/config-loader.ts",
-    "file://bin/cdkv2_scaffold_project.ts",
+    "file://bin/cdkv2_blueprint_project.ts",
     "file://lib/**/*.ts",
     "file://test/**/*.ts",
     "file://.pre-commit-config.yaml",

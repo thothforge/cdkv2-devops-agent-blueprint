@@ -3,14 +3,14 @@ kind: Component
 metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
-    github.com/project-slug: devops-agent-scaffold
+    github.com/project-slug: devops-agent-blueprint
     project_properties:
       deployment_region: us-east-1
       environment: dev
       owner: platform-team
-      project_name: devops-agent-scaffold
-  description: IaC project for devops-agent-scaffold
-  name: devops-agent-scaffold
+      project_name: devops-agent-blueprint
+  description: IaC project for devops-agent-blueprint
+  name: devops-agent-blueprint
   space: bco
   tags:
   - devops

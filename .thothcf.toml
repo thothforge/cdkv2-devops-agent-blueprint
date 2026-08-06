@@ -1,11 +1,11 @@
 [project_properties]
-project_name = "devops-agent-scaffold"
+project_name = "devops-agent-blueprint"
 deployment_region = "us-east-1"
 owner = "platform-team"
 environment = "dev"
 
 [thothcf]
-project_id = "devops-agent-scaffold"
+project_id = "devops-agent-blueprint"
 project_type = "cdkv2-typescript"
 space = "bco"
 

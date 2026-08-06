@@ -1,4 +1,4 @@
-project_name: "devops-agent-scaffold"
+project_name: "devops-agent-blueprint"
 
 environments:
   dev:
@@ -12,13 +12,13 @@ environments:
     region: "us-east-1"
 
 tags:
-  Project: "devops-agent-scaffold"
+  Project: "devops-agent-blueprint"
   ManagedBy: "CDK"
   Owner: "platform-team"
 
 # AWS DevOps Agent configuration
 devops_agent:
-  space_name: "devops-agent-scaffold"
+  space_name: "devops-agent-blueprint"
   space_description: "DevOps Agent Space for production operations and release management"
   # AWS accounts the agent can investigate (multi-account)
   monitored_accounts:

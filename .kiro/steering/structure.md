@@ -1,6 +1,6 @@
 # Project Structure
 
-CDKv2 TypeScript scaffold for AWS DevOps Agent enterprise deployment.
+CDKv2 TypeScript blueprint for AWS DevOps Agent enterprise deployment.
 
 ## Layout
 - `bin/` - CDK app entry point

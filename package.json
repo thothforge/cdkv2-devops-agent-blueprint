@@ -1,8 +1,8 @@
 {
-  "name": "cdkv2_scaffold_project",
+  "name": "cdkv2_blueprint_project",
   "version": "0.1.0",
   "bin": {
-    "cdkv2_scaffold_project": "bin/cdkv2_scaffold_project.js"
+    "cdkv2_blueprint_project": "bin/cdkv2_blueprint_project.js"
   },
   "scripts": {
     "build": "tsc",

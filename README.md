@@ -1,6 +1,6 @@
-# devops-agent-scaffold — CDKv2 TypeScript Infrastructure
+# devops-agent-blueprint — CDKv2 TypeScript Infrastructure
 
-> Enterprise-grade AWS CDK scaffold with cdk-nag compliance, multi-environment support, and AI-assisted development via ThothForge.
+> Enterprise-grade AWS CDK blueprint with cdk-nag compliance, multi-environment support, and AI-assisted development via ThothForge.
 
 ## Architecture
 
@@ -22,7 +22,7 @@ docs/catalog/                 Backstage TechDocs
 
 ## Prerequisites (Supplied by Platform Team)
 
-The following resources must exist **before** deploying this scaffold. They are managed by the `cdkv2_sso_delegated_management` pipeline:
+The following resources must exist **before** deploying this blueprint. They are managed by the `cdkv2_sso_delegated_management` pipeline:
 
 | Resource | Pipeline | Purpose |
 |----------|----------|---------|
@@ -33,7 +33,7 @@ The following resources must exist **before** deploying this scaffold. They are 
 | `DevOpsAgentAccessRole` in monitored accounts | StackSet | Cross-account agent access |
 | AWS Support plan on hosting account | Manual | Credits for agent compute |
 
-This scaffold deploys the **infrastructure** (Agent Space, KMS, associations, MCP). Access **to** the Agent Space is governed by the SSO pipeline.
+This blueprint deploys the **infrastructure** (Agent Space, KMS, associations, MCP). Access **to** the Agent Space is governed by the SSO pipeline.
 
 ## Quick Start
 
@@ -99,7 +99,7 @@ GitHub Actions pipeline (`.github/workflows/deploy.yml`):
 
 ## AI-Assisted Development
 
-This scaffold includes a pre-configured THOTH agent (`.kiro/agents/thoth.json`) with:
+This blueprint includes a pre-configured THOTH agent (`.kiro/agents/thoth.json`) with:
 - AWS IaC MCP server for CDK best practices
 - AWS Knowledge MCP for documentation
 - ThothCTL MCP for governance and scanning
@@ -120,7 +120,7 @@ kiro-cli chat --agent thoth
 
 ## AWS DevOps Agent
 
-The scaffold provisions the full DevOps Agent infrastructure via CDK:
+The blueprint provisions the full DevOps Agent infrastructure via CDK:
 
 - **Agent Space** — KMS-encrypted, tagged, with operator web app (IAM or Identity Center)
 - **AWS Account Associations** — Multi-account monitoring via assumable roles

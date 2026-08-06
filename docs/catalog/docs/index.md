@@ -1,3 +1,3 @@
 # CDKv2 Scaffold Project
 
-Enterprise-ready CDK TypeScript scaffold with cdk-nag security checks and multi-environment support.
+Enterprise-ready CDK TypeScript blueprint with cdk-nag security checks and multi-environment support.

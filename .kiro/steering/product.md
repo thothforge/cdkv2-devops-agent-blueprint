@@ -1,6 +1,6 @@
 # Product Context
 
-Enterprise CDK scaffold for deploying AWS DevOps Agent infrastructure across a multi-product, multi-account AWS Landing Zone.
+Enterprise CDK blueprint for deploying AWS DevOps Agent infrastructure across a multi-product, multi-account AWS Landing Zone.
 
 ## Goals
 - Provision Agent Spaces with enterprise security (KMS, Identity Center, least-privilege IAM)
