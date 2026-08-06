@@ -61,6 +61,7 @@ if (config.devops_agent) {
     ...stackProps,
     projectName: config.project_name,
     environment,
+    agentTags: config.agent_tags,
     agentConfig,
   });
 }

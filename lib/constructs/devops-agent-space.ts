@@ -11,6 +11,12 @@ export interface DevOpsAgentSpaceProps {
   description?: string;
   /** Environment (dev/qa/prd) */
   environment: string;
+  /** Project name for tagging */
+  projectName?: string;
+  /** Owner team for tagging */
+  owner?: string;
+  /** Custom tags (overrides defaults if provided) */
+  tags?: Record<string, string>;
   /** Enable IAM Identity Center authentication for operator web app */
   useIdentityCenter?: boolean;
   /** Identity Center instance ARN */
@@ -109,10 +115,7 @@ export class DevOpsAgentSpace extends Construct {
       description: props.description,
       kmsKeyArn: this.encryptionKey.keyArn,
       operatorApp,
-      tags: [
-        { key: 'Environment', value: props.environment },
-        { key: 'ManagedBy', value: 'CDK' },
-      ],
+      tags: this.buildTags(props),
     });
 
     this.agentSpaceId = agentSpace.attrAgentSpaceId;
@@ -139,5 +142,27 @@ export class DevOpsAgentSpace extends Construct {
         operatorAppRoleArn: this.operatorRole.roleArn,
       },
     };
+  }
+
+  private buildTags(props: DevOpsAgentSpaceProps): cdk.CfnTag[] {
+    // If custom tags provided, use them directly (organization's own policy)
+    if (props.tags) {
+      return Object.entries(props.tags).map(([key, value]) => ({ key, value }));
+    }
+
+    // Default tags (minimal, always applied)
+    const tags: cdk.CfnTag[] = [
+      { key: 'Environment', value: props.environment },
+      { key: 'ManagedBy', value: 'CDK' },
+    ];
+
+    if (props.projectName) {
+      tags.push({ key: 'Product', value: props.projectName });
+    }
+    if (props.owner) {
+      tags.push({ key: 'Owner', value: props.owner });
+    }
+
+    return tags;
   }
 }

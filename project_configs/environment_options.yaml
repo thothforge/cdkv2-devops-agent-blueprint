@@ -16,6 +16,17 @@ tags:
   ManagedBy: "CDK"
   Owner: "#{owner}#"
 
+# Custom tag policy for Agent Space resources (optional)
+# If provided, these override the default tags (Environment + ManagedBy)
+# Use this when your organization has its own tagging standard
+# agent_tags:
+#   CostCenter: "CC-12345"
+#   BusinessUnit: "engineering"
+#   Compliance: "pci-dss"
+#   DataClassification: "internal"
+#   ApplicationId: "APP-0042"
+#   Environment: "prod"
+
 # AWS DevOps Agent configuration
 devops_agent:
   space_name: "#{project_name}#"

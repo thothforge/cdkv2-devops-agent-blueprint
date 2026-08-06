@@ -8,6 +8,8 @@ import { DevOpsAgentPrivateConnection } from '../../constructs/devops-agent-priv
 export interface DevOpsAgentStackProps extends cdk.StackProps {
   projectName: string;
   environment: string;
+  /** Custom tag policy (overrides defaults if provided) */
+  agentTags?: Record<string, string>;
   /**
    * DevOps Agent configuration
    */
@@ -87,6 +89,8 @@ export class DevOpsAgentStack extends cdk.Stack {
       spaceName: agentConfig.spaceName,
       description: agentConfig.spaceDescription ?? `DevOps Agent Space for ${props.projectName} (${environment})`,
       environment,
+      projectName: props.projectName,
+      tags: props.agentTags,
       useIdentityCenter: agentConfig.useIdentityCenter,
       identityCenterInstanceArn: agentConfig.identityCenterInstanceArn,
     });

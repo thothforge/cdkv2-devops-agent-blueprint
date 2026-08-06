@@ -36,6 +36,7 @@ export interface ProjectConfig {
   project_name: string;
   environments: Record<string, EnvironmentConfig>;
   tags: Record<string, string>;
+  agent_tags?: Record<string, string>;
   devops_agent?: DevOpsAgentYamlConfig;
 }
 
