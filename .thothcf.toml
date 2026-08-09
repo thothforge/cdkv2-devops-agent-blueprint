@@ -45,3 +45,38 @@ description = "AWS Account ID for QA environment"
 template_value = "333333333333"
 condition = "^\\d{12}$"
 description = "AWS Account ID for production environment"
+
+[template_input_parameters.pipeline_mode]
+template_value = "github-actions"
+condition = "(cdk-pipelines|github-actions|azure-devops|none)"
+description = "CI/CD pipeline mode: cdk-pipelines (self-mutating CodePipeline), github-actions, azure-devops, or none"
+
+[template_input_parameters.pipeline_account]
+template_value = "111111111111"
+condition = "^\\d{12}$"
+description = "AWS account ID where CDK Pipeline stack is deployed (used only with cdk-pipelines mode)"
+
+[template_input_parameters.vcs_provider]
+template_value = "github"
+condition = "(github|github-enterprise|bitbucket|gitlab)"
+description = "VCS provider for CodeConnections (used only with cdk-pipelines mode)"
+
+[template_input_parameters.codestar_connection_arn]
+template_value = ""
+condition = "^(arn:aws:codeconnections:[a-z0-9-]+:\\d{12}:connection/[a-f0-9-]+|arn:aws:codestar-connections:[a-z0-9-]+:\\d{12}:connection/[a-f0-9-]+|)$"
+description = "AWS CodeConnections ARN (required for cdk-pipelines mode, create via Console)"
+
+[template_input_parameters.repo_owner]
+template_value = "my-org"
+condition = "^[a-zA-Z0-9\\-_.]+$"
+description = "Repository owner/organization"
+
+[template_input_parameters.repo_name]
+template_value = "my-infra"
+condition = "^[a-zA-Z0-9\\-_.]+$"
+description = "Repository name"
+
+[context_sources]
+description = "Architecture/OpenSpec definition files for Kiro steering docs"
+target = ".kiro/steering"
+supported_extensions = [".md", ".yaml", ".yml", ".txt"]

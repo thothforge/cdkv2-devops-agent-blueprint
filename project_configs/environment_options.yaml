@@ -1,5 +1,32 @@
 project_name: "#{project_name}#"
 
+# Pipeline configuration
+# mode: cdk-pipelines | github-actions | azure-devops | none
+pipeline:
+  mode: "#{pipeline_mode}#"
+  # CDK Pipelines settings (required when mode = cdk-pipelines)
+  cdk_pipelines:
+    # AWS CodeConnections (formerly CodeStar Connections) ARN
+    # Create via Console: Developer Tools > Settings > Connections > Create connection
+    # Must be in AVAILABLE status (requires manual one-time OAuth handshake with VCS provider)
+    connection_arn: "#{codestar_connection_arn}#"
+    # VCS provider: github | github-enterprise | bitbucket | gitlab
+    provider: "#{vcs_provider}#"
+    repo: "#{repo_owner}#/#{repo_name}#"
+    branch: "main"
+    self_mutating: true
+  # Account/region where the pipeline itself is deployed (tooling account)
+  pipeline_account: "#{pipeline_account}#"
+  pipeline_region: "#{deployment_region}#"
+  # Deployment wave ordering
+  deploy_order:
+    - environment: dev
+      manual_approval: false
+    - environment: qa
+      manual_approval: true
+    - environment: prd
+      manual_approval: true
+
 environments:
   dev:
     account: "#{dev_account_id}#"
