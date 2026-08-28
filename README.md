@@ -150,6 +150,7 @@ agent_spaces:
   - name: "my-app-nonprod"
     description: "NonProd Agent Space"
     tier: "nonprod"
+    locale: "en"            # optional — language of agent responses (BCP-47)
     monitored_accounts:
       - environment: dev
         account_id: "111111111111"
@@ -166,6 +167,22 @@ agent_spaces:
         account_id: "333333333333"
         regions: ["#{deployment_region}#"]
 ```
+
+### Agent Language (Locale)
+
+Set the `locale` field on any Agent Space to control the language the agent
+responds in. It accepts a BCP-47 tag and is optional (defaults to English):
+
+```yaml
+agent_spaces:
+  - name: "my-app-nonprod"
+    tier: "nonprod"
+    locale: "es"        # Spanish; also "es-ES", "pt-BR", "ja", "fr", etc.
+    monitored_accounts: [...]
+```
+
+Each space can have its own language. Changing `locale` later is a
+no-interruption update — the pipeline updates the Agent Space in place.
 
 ### Optional Integrations
 
