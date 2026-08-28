@@ -168,6 +168,29 @@ agent_spaces:
         regions: ["#{deployment_region}#"]
 ```
 
+### Scoping by Workload Tags
+
+Use `scope_tags` on a monitored account to restrict the agent's topology crawl
+to a specific workload. Only resources carrying **all** the listed tags are
+discovered and associated:
+
+```yaml
+agent_spaces:
+  - name: "my-app-prod"
+    tier: "prod"
+    monitored_accounts:
+      - environment: prd
+        account_id: "333333333333"
+        regions: ["#{deployment_region}#"]
+        scope_tags:
+          "aws:cloudformation:stack-name": "MyApp-production"
+```
+
+Any tag key works — including AWS-generated tags like
+`aws:cloudformation:stack-name` (present on all CDK/CloudFormation resources)
+or your own tags such as `app: myapp`. Omit `scope_tags` to crawl all resources
+the role can access.
+
 ### Agent Language (Locale)
 
 Set the `locale` field on any Agent Space to control the language the agent

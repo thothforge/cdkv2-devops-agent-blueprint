@@ -89,6 +89,10 @@ agent_spaces:
         account_id: "039957032026"
         regions:
           - "us-east-1"
+        # Optional: scope the topology crawl to a specific workload.
+        # Only resources carrying ALL these tags are discovered.
+        # scope_tags:
+        #   "aws:cloudformation:stack-name": "MyApp-production"
 
 # MCP server integrations (applied to all spaces, or per-space if needed)
 # mcp_servers:
