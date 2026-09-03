@@ -1,24 +1,24 @@
-project_name: "cdkv2-devops-agent-deployment-labvel"
+project_name: "#{project_name}#"
 
 # Pipeline configuration
 # mode: cdk-pipelines | github-actions | azure-devops | none
 pipeline:
-  mode: "cdk-pipelines"
+  mode: "#{pipeline_mode}#"
   # CDK Pipelines settings (required when mode = cdk-pipelines)
   cdk_pipelines:
     # AWS CodeConnections (formerly CodeStar Connections) ARN
     # Create via Console: Developer Tools > Settings > Connections > Create connection
     # Must be in AVAILABLE status (requires manual one-time OAuth handshake with VCS provider)
-    connection_arn: "arn:aws:codestar-connections:us-east-2:105171185823:connection/598aa2a8-f342-4878-ae3e-f8c31732e15e"
+    connection_arn: "#{codestar_connection_arn}#"
     # VCS provider: github | github-enterprise | bitbucket | gitlab
-    provider: "github"
-    repo: "velez94/cdkv2-devops-agent-deployment-labvel"
+    provider: "#{vcs_provider}#"
+    repo: "#{repo_owner}#/#{repo_name}#"
     branch: "main"
     self_mutating: true
   # Account/region where the pipeline itself is deployed (tooling/devsecops account)
   # This is also where Agent Spaces are deployed (hub model)
-  pipeline_account: "105171185823"
-  pipeline_region: "us-east-1"
+  pipeline_account: "#{pipeline_account}#"
+  pipeline_region: "#{deployment_region}#"
   # Deployment wave ordering (deploys AgentAccessRole to target accounts)
   deploy_order:
     - environment: dev
@@ -30,19 +30,19 @@ pipeline:
 
 environments:
   dev:
-    account: "571340586587"
-    region: "us-east-1"
+    account: "#{dev_account_id}#"
+    region: "#{deployment_region}#"
   qa:
-    account: "904985504252"
-    region: "us-east-1"
+    account: "#{qa_account_id}#"
+    region: "#{deployment_region}#"
   prd:
-    account: "039957032026"
-    region: "us-east-1"
+    account: "#{prd_account_id}#"
+    region: "#{deployment_region}#"
 
 tags:
-  Project: "cdkv2-devops-agent-deployment-labvel"
+  Project: "#{project_name}#"
   ManagedBy: "CDK"
-  Owner: "platform-team"
+  Owner: "#{owner}#"
 
 # ──────────────────────────────────────────────────────────────────────────────
 # AWS DevOps Agent Configuration — Hub Model
@@ -63,7 +63,7 @@ tags:
 # ──────────────────────────────────────────────────────────────────────────────
 
 agent_spaces:
-  - name: "devops-agent-nonprod"
+  - name: "#{project_name}#-nonprod"
     description: "DevOps Agent Space for non-production environments (dev + qa)"
     tier: "nonprod"
     # Language of agent responses (BCP-47). Optional — omit for English default.
@@ -73,22 +73,22 @@ agent_spaces:
     # Accounts this Agent Space monitors (cross-account associations)
     monitored_accounts:
       - environment: dev
-        account_id: "571340586587"
+        account_id: "#{dev_account_id}#"
         regions:
-          - "us-east-1"
+          - "#{deployment_region}#"
       - environment: qa
-        account_id: "904985504252"
+        account_id: "#{qa_account_id}#"
         regions:
-          - "us-east-1"
+          - "#{deployment_region}#"
 
-  - name: "devops-agent-prod"
+  - name: "#{project_name}#-prod"
     description: "DevOps Agent Space for production environment"
     tier: "prod"
     monitored_accounts:
       - environment: prd
-        account_id: "039957032026"
+        account_id: "#{prd_account_id}#"
         regions:
-          - "us-east-1"
+          - "#{deployment_region}#"
         # Optional: scope the topology crawl to a specific workload.
         # Only resources carrying ALL these tags are discovered.
         # scope_tags:
